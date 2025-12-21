@@ -70,7 +70,6 @@ void	check_win(t_game_mlx *mlx_data, char next)
 	if (next == 'E' && mlx_data->game->collect_count == 0)
 	{
 		ft_printf("Congratulations. You Win!!\n");
-		mlx_destroy_window(mlx_data->mlx, mlx_data->win);
-		exit(0);
+		close_game(mlx_data);
 	}
 }

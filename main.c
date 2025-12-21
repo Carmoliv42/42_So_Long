@@ -68,6 +68,7 @@ int main(int argc, char **argv)
     mlx_do_sync(mlx_data.mlx);  // força atualização no X server WSL
     // Hook teclado
     mlx_hook(mlx_data.win, 2, 1L<<0, key_hook, &mlx_data);
+    mlx_hook(mlx_data.win, 17, 0, close_game, &mlx_data); //fecha no X
     // Loop principal
     mlx_loop(mlx_data.mlx);
     free_map(game.map);
