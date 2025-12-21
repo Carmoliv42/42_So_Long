@@ -60,5 +60,7 @@ void    draw_tile(t_game_mlx *mlx_data, char c, int x, int y);
 int	    can_move(t_game_mlx *mlx_data, char next);
 void	update_player(t_game_mlx *mlx_data, int new_x, int new_y, char next);
 void	check_win(t_game_mlx *mlx_data, char next);
+int		close_game(t_game_mlx *mlx);
+void	destroy_images(t_game_mlx *mlx);
 
 #endif

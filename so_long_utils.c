@@ -28,3 +28,22 @@ void	init_counts(t_game *game)
 	game->exit_count = 0;
 	game->collect_count = 0;
 }
+
+void destroy_images(t_game_mlx *mlx)
+{
+    mlx_destroy_image(mlx->mlx, mlx->img.wall);
+    mlx_destroy_image(mlx->mlx, mlx->img.floor);
+    mlx_destroy_image(mlx->mlx, mlx->img.player);
+    mlx_destroy_image(mlx->mlx, mlx->img.collect);
+    mlx_destroy_image(mlx->mlx, mlx->img.exit);
+}
+
+int close_game(t_game_mlx *mlx)
+{
+    destroy_images(mlx);
+    mlx_destroy_window(mlx->mlx, mlx->win);
+    mlx_destroy_display(mlx->mlx);
+    free(mlx->mlx);
+    free_map(mlx->game->map);
+    exit(0);
+}

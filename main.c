@@ -4,7 +4,7 @@ int main(int argc, char **argv)
 {
     t_game game;
     t_game_mlx mlx_data;
-    int i;
+    //int i;
 
     if (argc != 2)
     {
@@ -22,9 +22,11 @@ int main(int argc, char **argv)
         free_map(game.map);
         return (1);
     }
+    #ifdef DEBUG
     ft_printf("Map validated! %dx%d\n", game.width, game.height);
     for (i = 0; game.map[i]; i++)
         ft_printf("%s\n", game.map[i]);
+    #endif
     // Inicializa MLX
     mlx_data.game = &game;
     mlx_data.moves = 0;
