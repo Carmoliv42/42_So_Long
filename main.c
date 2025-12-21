@@ -11,24 +11,20 @@ int main(int argc, char **argv)
         write(2, "Usage: ./so_long <map.ber>\n", 27);
         return (1);
     }
-
     game.map = read_map(argv[1], &game);
     if (!game.map)
     {
         write(2, "Error: Failed to load map\n", 27);
         return (1);
     }
-
     if (!validate_map(&game))
     {
         free_map(game.map);
         return (1);
     }
-
-    ft_printf("Mapa válido! %dx%d\n", game.width, game.height);
+    ft_printf("Map validated! %dx%d\n", game.width, game.height);
     for (i = 0; game.map[i]; i++)
         ft_printf("%s\n", game.map[i]);
-
     // Inicializa MLX
     mlx_data.game = &game;
     mlx_data.moves = 0;
@@ -39,7 +35,6 @@ int main(int argc, char **argv)
         free_map(game.map);
         return (1);
     }
-
     mlx_data.win = mlx_new_window(mlx_data.mlx,
                                   game.width * TILE_SIZE,
                                   game.height * TILE_SIZE,
@@ -50,7 +45,6 @@ int main(int argc, char **argv)
         free_map(game.map);
         return (1);
     }
-
     // Carrega imagens com checagem
     int w;
     int h;
@@ -60,7 +54,6 @@ int main(int argc, char **argv)
     mlx_data.img.player  = mlx_xpm_file_to_image(mlx_data.mlx, "images/player.xpm", &w, &h);
     mlx_data.img.collect = mlx_xpm_file_to_image(mlx_data.mlx, "images/collect.xpm", &w, &h);
     mlx_data.img.exit    = mlx_xpm_file_to_image(mlx_data.mlx, "images/exit.xpm", &w, &h);
-
     if (!mlx_data.img.wall || !mlx_data.img.floor || !mlx_data.img.player ||
         !mlx_data.img.collect || !mlx_data.img.exit)
     {
@@ -68,17 +61,13 @@ int main(int argc, char **argv)
         free_map(game.map);
         return (1);
     }
-
     // Desenha o mapa
     draw_map(&mlx_data);
     mlx_do_sync(mlx_data.mlx);  // força atualização no X server WSL
-
     // Hook teclado
     mlx_hook(mlx_data.win, 2, 1L<<0, key_hook, &mlx_data);
-
     // Loop principal
     mlx_loop(mlx_data.mlx);
-
     free_map(game.map);
     return (0);
 }
