@@ -6,49 +6,49 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:26 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/06 22:45:29 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/08 19:38:18 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int check_rectangle(t_game *game)
+static	int	check_rectangle(t_game *game)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < game->height)
-    {
-        if (so_strlen(game->map[i]) != game->width)
-            return 0;
-        i++;
-    }
-    return 1;
+	i = 0;
+	while (i < game->height)
+	{
+		if (so_strlen(game->map[i]) != game->width)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-static int check_walls(t_game *game)
+static	int	check_walls(t_game *game)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while(j < game->width)
-    {
-        if (game->map[0][j] != '1' || game->map[game->height - 1][j] != '1')
-            return (0);
-        j++;
-    }
-    while(i < game->height)
-    {
-        if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
-            return (0);
-        i++;
-    }
-    return 1;
+	i = 0;
+	j = 0;
+	while (j < game->width)
+	{
+		if (game->map[0][j] != '1' || game->map[game->height - 1][j] != '1')
+			return (0);
+		j++;
+	}
+	while (i < game->height)
+	{
+		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-static int	check_char(t_game *game, char c)
+static	int	check_char(t_game *game, char c)
 {
 	if (c == 'P')
 		game->player_count++;
@@ -61,7 +61,7 @@ static int	check_char(t_game *game, char c)
 	return (1);
 }
 
-static int	check_chars(t_game *game)
+static	int	check_chars(t_game *game)
 {
 	int		i;
 	int		j;
@@ -87,25 +87,25 @@ static int	check_chars(t_game *game)
 	return (1);
 }
 
-int validate_map(t_game *game)
+int	validate_map(t_game *game)
 {
-    if (!check_rectangle(game))
-    {
-        write(2, "Error\nMap is not rectangular\n", 29);
-        free_map(game->map);
-        exit(1);
-    }
-    if (!check_walls(game))
-    {
-        write(2, "Error\nMap is not surrounded by walls\n", 37);
-        free_map(game->map);
-        exit(1);
-    }
-    if (!check_chars(game))
-    {
-        write(2, "Error\nInvalid characters or wrong counts\n", 41);
-        free_map(game->map);
-        exit(1);
-    }
-    return 1;
+	if (!check_rectangle(game))
+	{
+		write(2, "Error\nMap is not rectangular\n", 29);
+		free_map(game->map);
+		exit(1);
+	}
+	if (!check_walls(game))
+	{
+		write(2, "Error\nMap is not surrounded by walls\n", 37);
+		free_map(game->map);
+		exit(1);
+	}
+	if (!check_chars(game))
+	{
+		write(2, "Error\nInvalid characters or wrong counts\n", 41);
+		free_map(game->map);
+		exit(1);
+	}
+	return (1);
 }

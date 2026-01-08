@@ -6,47 +6,53 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:14 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/06 22:45:16 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/08 20:13:28 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // Desenha uma célula do mapa
-void draw_tile(t_game_mlx *mlx_data, char c, int x, int y)
+void	draw_tile(t_game_mlx *mlx_data, char c, int x, int y)
 {
-    mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.floor, x, y);
-    if (c == '1')
-        mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.wall, x, y);
-    else if (c == 'P')
-    {
-        mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.player, x, y);
-        mlx_data->player_x = x / TILE_SIZE;
-        mlx_data->player_y = y / TILE_SIZE;
-    }
-    else if (c == 'C')
-        mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.collect, x, y);
-    else if (c == 'E')
-        mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.exit, x, y);
+	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
+		mlx_data->img.floor, x, y);
+	if (c == '1')
+		mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
+			mlx_data->img.wall, x, y);
+	else if (c == 'P')
+	{
+		mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
+			mlx_data->img.player, x, y);
+		mlx_data->player_x = x / TILE_SIZE;
+		mlx_data->player_y = y / TILE_SIZE;
+	}
+	else if (c == 'C')
+		mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
+			mlx_data->img.collect, x, y);
+	else if (c == 'E')
+		mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
+			mlx_data->img.exit, x, y);
 }
 
 // Desenha o mapa completo
-void draw_map(t_game_mlx *mlx_data)
+void	draw_map(t_game_mlx *mlx_data)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (i < mlx_data->game->height)
-    {
-        j = 0;
-        while (j < mlx_data->game->width)
-        {
-            draw_tile(mlx_data, mlx_data->game->map[i][j], j * TILE_SIZE, i * TILE_SIZE);
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < mlx_data->game->height)
+	{
+		j = 0;
+		while (j < mlx_data->game->width)
+		{
+			draw_tile(mlx_data, mlx_data->game->map[i][j],
+				j * TILE_SIZE, i * TILE_SIZE);
+			j++;
+		}
+		i++;
+	}
 }
 
 // Função que move o jogador
@@ -73,7 +79,7 @@ void	update_player(t_game_mlx *mlx_data, int new_x, int new_y, char next)
 	mlx_data->player_x = new_x;
 	mlx_data->player_y = new_y;
 	mlx_data->moves++;
-	//ft_printf("Moviments: %d\n", mlx_data->moves);
+	ft_printf("Moviments: %d\n", mlx_data->moves);
 	draw_map(mlx_data);
 }
 

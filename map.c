@@ -6,7 +6,7 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:22 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/06 23:05:46 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/08 20:10:45 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static	int	get_map_height(const char *file)
 	if (fd < 0)
 		return (-1);
 	height = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		free(line);
 		height++;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (height);
@@ -57,10 +59,12 @@ static	char	**fill_map(const char *file, int height)
 	if (!map)
 		return (NULL);
 	i = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		trim_line(line);
 		map[i++] = line;
+		line = get_next_line(fd);
 	}
 	map[i] = NULL;
 	close(fd);

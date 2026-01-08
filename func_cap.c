@@ -6,7 +6,7 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:34 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/06 22:45:35 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/08 20:07:49 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,39 @@ void	move_player(t_game_mlx *mlx_data, int dx, int dy)
 	update_player(mlx_data, new_x, new_y, next);
 	check_win(mlx_data, next);
 }
-// Captura teclado
-int key_hook(int keycode, t_game_mlx *mlx_data)
+
+int	key_hook(int keycode, t_game_mlx *mlx_data)
 {
-    if (keycode == 65307) // ESC
-        close_game(mlx_data);
-    else if (keycode == 119) // W
-        move_player(mlx_data, 0, -1);
-    else if (keycode == 115) // S
-        move_player(mlx_data, 0, 1);
-    else if (keycode == 97) // A
-        move_player(mlx_data, -1, 0);
-    else if (keycode == 100) // D
-        move_player(mlx_data, 1, 0);
-    return (0);
+	if (keycode == 65307)
+		close_game(mlx_data);
+	else if (keycode == 119)
+		move_player(mlx_data, 0, -1);
+	else if (keycode == 115)
+		move_player(mlx_data, 0, 1);
+	else if (keycode == 97)
+		move_player(mlx_data, -1, 0);
+	else if (keycode == 100)
+		move_player(mlx_data, 1, 0);
+	return (0);
 }
 
-int load_images(t_game_mlx *mlx_data)
+int	load_images(t_game_mlx *mlx_data)
 {
-    int w;
-    int h;
+	int	w;
+	int	h;
 
-    mlx_data->img.wall    = mlx_xpm_file_to_image(mlx_data->mlx, "images/wall.xpm", &w, &h);
-    mlx_data->img.floor   = mlx_xpm_file_to_image(mlx_data->mlx, "images/floor.xpm", &w, &h);
-    mlx_data->img.player  = mlx_xpm_file_to_image(mlx_data->mlx, "images/player.xpm", &w, &h);
-    mlx_data->img.collect = mlx_xpm_file_to_image(mlx_data->mlx, "images/collect.xpm", &w, &h);
-    mlx_data->img.exit    = mlx_xpm_file_to_image(mlx_data->mlx, "images/exit.xpm", &w, &h);
-    if (!mlx_data->img.wall || !mlx_data->img.floor || !mlx_data->img.player
-        || !mlx_data->img.collect || !mlx_data->img.exit)
-        return 0;
-    return 1;
+	mlx_data->img.wall = mlx_xpm_file_to_image(mlx_data->mlx,
+			"images/wall.xpm", &w, &h);
+	mlx_data->img.floor = mlx_xpm_file_to_image(mlx_data->mlx,
+			"images/floor.xpm", &w, &h);
+	mlx_data->img.player = mlx_xpm_file_to_image(mlx_data->mlx,
+			"images/player.xpm", &w, &h);
+	mlx_data->img.collect = mlx_xpm_file_to_image(mlx_data->mlx,
+			"images/collect.xpm", &w, &h);
+	mlx_data->img.exit = mlx_xpm_file_to_image(mlx_data->mlx,
+			"images/exit.xpm", &w, &h);
+	if (!mlx_data->img.wall || !mlx_data->img.floor || !mlx_data->img.player
+		|| !mlx_data->img.collect || !mlx_data->img.exit)
+		return (0);
+	return (1);
 }
