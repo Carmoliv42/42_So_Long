@@ -67,7 +67,7 @@ void	init_counts(t_game *game);
 void	draw_map(t_game_mlx *mlx_data);
 int		key_hook(int keycode, t_game_mlx *mlx_data);
 void	move_player(t_game_mlx *mlx_data, int dx, int dy);
-int		load_images(t_game_mlx *mlx_data);
+//int		load_images(t_game_mlx *mlx_data);
 void	draw_tile(t_game_mlx *mlx_data, char c, int x, int y);
 int		can_move(t_game_mlx *mlx_data, char next);
 void	update_player(t_game_mlx *mlx_data, int new_x, int new_y, char next);

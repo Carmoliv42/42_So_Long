@@ -46,7 +46,7 @@ int	key_hook(int keycode, t_game_mlx *mlx_data)
 	return (0);
 }
 
-int	load_images(t_game_mlx *mlx_data)
+/*int	load_images(t_game_mlx *mlx_data)
 {
 	int	w;
 	int	h;
@@ -65,4 +65,4 @@ int	load_images(t_game_mlx *mlx_data)
 		|| !mlx_data->img.collect || !mlx_data->img.exit)
 		return (0);
 	return (1);
-}
+}*/
