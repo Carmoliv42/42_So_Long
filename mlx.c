@@ -79,7 +79,7 @@ void	update_player(t_game_mlx *mlx_data, int new_x, int new_y, char next)
 	mlx_data->player_x = new_x;
 	mlx_data->player_y = new_y;
 	mlx_data->moves++;
-	ft_printf("Moviments: %d\n", mlx_data->moves);
+	ft_printf("Movements: %d\n", mlx_data->moves);
 	draw_map(mlx_data);
 }
 
@@ -87,7 +87,7 @@ void	check_win(t_game_mlx *mlx_data, char next)
 {
 	if (next == 'E' && mlx_data->game->collect_count == 0)
 	{
-		ft_printf("Congratulations. You Win!!\n");
+		ft_printf("Congratulations. You Win!! Total Movements %d\n", mlx_data->moves);
 		close_game(mlx_data);
 	}
 }
