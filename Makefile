@@ -6,8 +6,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Fontes
-SRC = main.c map.c map_validation.c so_long_utils.c func_cap.c\
-      GNL/get_next_line.c GNL/get_next_line_utils.c mlx.c
+SRC = main.c map_read.c map_validation.c so_long_utils.c controls.c\
+      GNL/get_next_line.c GNL/get_next_line_utils.c game_render.c
 
 # Objetos
 OBJ = $(SRC:.c=.o)
