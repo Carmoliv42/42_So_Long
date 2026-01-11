@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:22 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/08 20:10:45 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/11 13:30:41 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,27 @@ char	**read_map(const char *file, t_game *game)
 	else
 		game->width = 0;
 	return (map);
+}
+
+void	find_exit(t_game_mlx *mlx_data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (mlx_data->game->map[y])
+	{
+		x = 0;
+		while (mlx_data->game->map[y][x])
+		{
+			if (mlx_data->game->map[y][x] == 'E')
+			{
+				mlx_data->exit_x = x;
+				mlx_data->exit_y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 19:46:57 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/08 19:50:52 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/11 14:00:26 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,22 @@ typedef struct s_game_mlx
 	t_img	img;
 	int		player_x;
 	int		player_y;
+	int		exit_x;
+	int		exit_y;
 	int		moves;
+	char	player_tile;
 }	t_game_mlx;
 
-// map
 char	**read_map(const char *file, t_game *game);
 void	free_map(char **map);
 int		so_strlen(char *str);
 
-// validation
 int		validate_map(t_game *game);
 void	init_counts(t_game *game);
 
-// mlx
 void	draw_map(t_game_mlx *mlx_data);
 int		key_hook(int keycode, t_game_mlx *mlx_data);
 void	move_player(t_game_mlx *mlx_data, int dx, int dy);
-//int		load_images(t_game_mlx *mlx_data);
 void	draw_tile(t_game_mlx *mlx_data, char c, int x, int y);
 int		can_move(t_game_mlx *mlx_data, char next);
 void	update_player(t_game_mlx *mlx_data, int new_x, int new_y, char next);

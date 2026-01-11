@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   game_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:14 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/08 20:13:28 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/11 13:55:06 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// Desenha uma célula do mapa
 void	draw_tile(t_game_mlx *mlx_data, char c, int x, int y)
 {
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
@@ -35,7 +34,6 @@ void	draw_tile(t_game_mlx *mlx_data, char c, int x, int y)
 			mlx_data->img.exit, x, y);
 }
 
-// Desenha o mapa completo
 void	draw_map(t_game_mlx *mlx_data)
 {
 	int	i;
@@ -55,12 +53,10 @@ void	draw_map(t_game_mlx *mlx_data)
 	}
 }
 
-// Função que move o jogador
 int	can_move(t_game_mlx *mlx_data, char next)
 {
+	(void)mlx_data;
 	if (next == '1')
-		return (0);
-	if (next == 'E' && mlx_data->game->collect_count > 0)
 		return (0);
 	return (1);
 }
@@ -72,9 +68,14 @@ void	update_player(t_game_mlx *mlx_data, int new_x, int new_y, char next)
 
 	x = mlx_data->player_x;
 	y = mlx_data->player_y;
+	mlx_data->game->map[y][x] = mlx_data->player_tile;
 	if (next == 'C')
+	{
 		mlx_data->game->collect_count--;
-	mlx_data->game->map[y][x] = '0';
+		mlx_data->player_tile = '0';
+	}
+	else
+		mlx_data->player_tile = next;
 	mlx_data->game->map[new_y][new_x] = 'P';
 	mlx_data->player_x = new_x;
 	mlx_data->player_y = new_y;
@@ -87,7 +88,8 @@ void	check_win(t_game_mlx *mlx_data, char next)
 {
 	if (next == 'E' && mlx_data->game->collect_count == 0)
 	{
-		ft_printf("Congratulations. You Win!! Total Movements %d\n", mlx_data->moves);
+		ft_printf("Congratulations. You Win!! Total Movements %d\n",
+			mlx_data->moves);
 		close_game(mlx_data);
 	}
 }
