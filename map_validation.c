@@ -6,7 +6,7 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:45:26 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/11 14:57:59 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/11 15:25:50 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,13 @@ int	validate_map(t_game *game)
 		error = 0;
 	else if (!check_walls(game))
 		error = 1;
-	else if ((error = check_chars(game)) != 0)
-		error += 1;
 	else
-		return (1);
+	{
+		error = check_chars(game);
+		if (error == 0)
+			return (1);
+		error += 1;
+	}
 	write(2, errors[error], sizes[error]);
 	free_map(game->map);
 	exit(1);

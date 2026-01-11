@@ -6,7 +6,7 @@
 /*   By: carmoliv <carmoliv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 19:46:57 by carmoliv          #+#    #+#             */
-/*   Updated: 2026/01/11 14:00:26 by carmoliv         ###   ########.fr       */
+/*   Updated: 2026/01/11 15:15:58 by carmoliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <string.h>
-# include "mlx_linux/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include "GNL/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 
